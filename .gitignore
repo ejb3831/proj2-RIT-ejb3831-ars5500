@@ -15,6 +15,7 @@ out/
 output/
 images/*
 .idea/*
+.vscode/*
 **/RIT.iml
 **/module-info.java
 .classpath
