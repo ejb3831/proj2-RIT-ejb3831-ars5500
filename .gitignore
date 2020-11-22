@@ -13,7 +13,7 @@
 out/
 *.class
 output/
-images/*
-.idea/*
-RIT.iml
-src/module-info.java
+images/**
+.idea/**
+**/RIT.iml
+**/module-info.java
