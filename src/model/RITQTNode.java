@@ -26,7 +26,7 @@ public class RITQTNode {
     /** quadrant IV */
     private RITQTNode lr;
 
-    /**
+    /**     
      * Construct a leaf node with no children.
      * @param val node value
      */
