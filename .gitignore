@@ -1,4 +1,4 @@
-# Default ignored files
+.vscode/# Default ignored files
 .idea/shelf/
 .idea/workspace.xml
 # Datasource local storage ignored files
