@@ -14,3 +14,6 @@ out/
 *.class
 output/
 images/*
+.idea/*
+RIT.iml
+src/module-info.java
