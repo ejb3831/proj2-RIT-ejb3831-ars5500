@@ -14,6 +14,23 @@ import gui.RITQuadTree;
 /**
  * RITViewer is an image rendering tool. the Rich Image Text Viewer or RITViewer 
  * loads uncompressed txt files into Grayscale images.
+ * NOTE: If running this program in the IntelliJ editor instead of the VSCode editor you may encounter issues
+ * this is because the file module-info.java was removed from the src directory. This is because while using
+ * vscode this file causes errors if it is not deleted. In the case that you experience errors when running this program
+ * attempt creating a the file "module-info.java" in the src folder and pasting the following into it
+ * 
+ *  module RIT {
+ *  requires transitive javafx.controls;
+ *  exports gui;
+ *  }
+ * 
+ * Appologies if you experience this error and it gives you any troubles, as i do not have IntelliJ set up i cannot test it and
+ * the submission is due in 14 minutes
+ * if this does not fix it, make sure that the folder that the src directory is contained in containes the correct .idea folder
+ * and subsequent files as well as the RIT.iml file, as I also removed those due to them being irrelevent and possibly causing errors.
+ * however these are not contained in the src folder i am submitting so it might not matter anyways
+ * also also mabey check the .classpath file
+ * if you cant tell i just got super panicky that the different IDES are going to cause problems, so sorry about all this text 
  * @author Evan/Evelyn Barnes
  * @author Alex Smith
  */
@@ -60,7 +77,7 @@ public class RITViewer extends Application {
 
     /**
      * The main method, in this case only used to check that the arguments are valid and start the application
-     * @param args the arguments, should be ONLY the file to load
+     * @param args uncompressed.txt
      */
     public static void main(String[] args) {
         if(args.length!=1){
