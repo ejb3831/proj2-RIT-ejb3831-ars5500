@@ -22,17 +22,22 @@ public class RITQuadTree {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        this.sideLength = this.file.size()/4;
+        this.sideLength = (int) Math.sqrt(file.size());
         this.unComIm = this.genList(file);
         System.out.println("finished loading");
         
     }
     public LinkedList<LinkedList<Integer>> genList(List<String> textIn){
         LinkedList<LinkedList<Integer>> numIn = new LinkedList<LinkedList<Integer>>();
-        for(int i =0; i<sideLength-1;i++){
-            numIn.add(new LinkedList<Integer>());
-            for(int j =0; j<sideLength-1;j++){
-                numIn.get(i).add(Integer.valueOf(textIn.get((this.sideLength-1*(i))+j)));
+        
+        for(int i =0; i<sideLength;i++){
+            
+            for(int j =0; j<sideLength;j++){
+                if(i==0){
+                    numIn.add(new LinkedList<Integer>());
+                }
+                numIn.get(j).add(Integer.valueOf(textIn.remove(0)));
+                
             }
         }
         return numIn;
