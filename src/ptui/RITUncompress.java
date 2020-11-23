@@ -73,6 +73,7 @@ public class RITUncompress {
                 System.out.println("Output File: "+ name);
             }else{
                 System.out.println("Error generating output file: File already exists");
+                return null;
             }
         }catch(IOException e){
             System.out.println("Error generating output file: ");

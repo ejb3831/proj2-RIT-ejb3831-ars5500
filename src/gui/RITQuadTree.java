@@ -19,10 +19,17 @@ public class RITQuadTree {
         this.fileName = fileName;
         try {
             this.file = Files.readAllLines(Paths.get(fileName));
+
         } catch (IOException e) {
+            System.out.println("Error Reading File: ");
             e.printStackTrace();
+            return;
         }
         this.sideLength = (int) Math.sqrt(file.size());
+        if(this.sideLength != Math.sqrt(file.size())){
+            System.out.println("Error: Image is not a square");
+            return;
+        }
         this.unComIm = this.genList(file);
         System.out.println("finished loading");
         
@@ -36,7 +43,12 @@ public class RITQuadTree {
                 if(i==0){
                     numIn.add(new LinkedList<Integer>());
                 }
-                numIn.get(j).add(Integer.valueOf(textIn.remove(0)));
+                int tVal = Integer.valueOf(textIn.remove(0));
+                if(tVal<0 || tVal>255){
+                    System.out.println("Error: Value " + tVal + " is not in the range 0-255");
+                    return null;
+                }
+                numIn.get(j).add(tVal);
                 
             }
         }
