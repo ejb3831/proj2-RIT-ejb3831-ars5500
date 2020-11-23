@@ -12,13 +12,14 @@ import model.RITQTNode;
 
 public class RITUncompress {
     public static void main(String[] args) {
-        // if (args.length != 2) {
-        //     System.out.println("Usage: java RITUncompress compressed.rit uncompressed.txt");
-        //     return;
-        // }
+        if (args.length != 2) {
+            System.out.println("Usage: java RITUncompress compressed.rit uncompressed.txt");
+            return;
+        }
+        System.out.println("Uncompressing: " + args[0]);
         LinkedList<Integer> textNums = new LinkedList<Integer>();
         try {
-            Files.readAllLines(Paths.get("images/compressed/simple8x8.rit")).forEach((x) -> {
+            Files.readAllLines(Paths.get(args[0])).forEach((x) -> {
                 textNums.add(Integer.valueOf(x));
             });;
         } catch (IOException e) {
@@ -27,10 +28,12 @@ public class RITUncompress {
             return;
         }
         int size = textNums.remove(0);
+        System.out.print("QTree: ");
         RITQTNode quadTree = qtform(textNums);
+        System.out.println("");
         
-        LinkedList<Integer> imAsArr = convertToArr(quadTree, (int) Math.sqrt(size), "images/simple8x8.txt"); 
-        System.out.println("Finished Reading");
+        LinkedList<Integer> imAsArr = convertToArr(quadTree, (int) Math.sqrt(size), args[1]); 
+        
         
 
     }
@@ -38,6 +41,7 @@ public class RITUncompress {
 
     public static RITQTNode qtform(List<Integer> image){
         int value = image.remove(0);
+        System.out.print(""+value+", ");
         if(value==-1){
             return new RITQTNode(value, qtform(image), qtform(image), qtform(image), qtform(image));
         }else{
