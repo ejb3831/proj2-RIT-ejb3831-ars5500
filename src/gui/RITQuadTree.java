@@ -38,5 +38,9 @@ public class RITQuadTree {
         return numIn;
     }
 
+    public int getSideLength(){return sideLength;};
+    public LinkedList<LinkedList<Integer>> getImage(){return unComIm;}
+    
+
     
 }
