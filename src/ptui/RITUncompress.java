@@ -1,5 +1,7 @@
 package ptui;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -20,13 +22,14 @@ public class RITUncompress {
                 textNums.add(Integer.valueOf(x));
             });;
         } catch (IOException e) {
+            System.out.println("Error opening input file: ");
             e.printStackTrace();
             return;
         }
         int size = textNums.remove(0);
         RITQTNode quadTree = qtform(textNums);
         
-        LinkedList<Integer> imAsArr = convertToArr(quadTree, (int) Math.sqrt(size)); 
+        LinkedList<Integer> imAsArr = convertToArr(quadTree, (int) Math.sqrt(size), "images/simple8x8.txt"); 
         System.out.println("Finished Reading");
         
 
@@ -59,13 +62,37 @@ public class RITUncompress {
             
         }
     }
-    public static LinkedList<Integer> convertToArr(RITQTNode tree, int size){
-        LinkedList<Integer> imageList = new LinkedList<Integer>();
-        for(int i=1;i<=size;i++){
-            for(int j=1;j<=size;j++){
-                imageList.add(getNodeVal(j,i,size,tree));
+    public static LinkedList<Integer> convertToArr(RITQTNode tree, int size, String name){
+        File unComped = new File(name);
+        try{
+            if(unComped.createNewFile()){
+                System.out.println("Output File: "+ name);
+            }else{
+                System.out.println("Error generating output file: File already exists");
             }
+        }catch(IOException e){
+            System.out.println("Error generating output file: ");
+            e.printStackTrace();
+            return null;
         }
+        LinkedList<Integer> imageList = new LinkedList<Integer>();
+        try {
+            FileWriter writeFile = new FileWriter(unComped);
+            for(int i=1;i<=size;i++){
+                for(int j=1;j<=size;j++){
+                    int tVal = getNodeVal(j,i,size,tree);
+                    imageList.add(tVal);
+                    writeFile.write(""+tVal+"\n");
+                }
+            }
+            writeFile.close(); 
+        } catch (IOException e) {
+            System.out.println("Error generating output file: ");
+            e.printStackTrace();
+            return null;
+        }
+        
+        
         return imageList;
     }
 
