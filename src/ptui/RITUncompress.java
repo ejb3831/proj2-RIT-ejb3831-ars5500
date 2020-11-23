@@ -25,6 +25,7 @@ public class RITUncompress {
         }
         int size = textNums.remove(0);
         RITQTNode quadTree = qtform(textNums);
+        System.out.println(getNodeVal(34, 2, size, quadTree));
         System.out.println("Finished Reading");
         
 
@@ -37,6 +38,24 @@ public class RITUncompress {
             return new RITQTNode(value, qtform(image), qtform(image), qtform(image), qtform(image));
         }else{
             return new RITQTNode(value);
+        }
+    }
+
+    public static Integer getNodeVal(int x, int y, int scope, RITQTNode tree){
+        int newScope = scope/2;
+        if(tree.getVal()!=-1){
+            return tree.getVal();
+        }else{
+            if((x<=newScope)&&(y<=newScope)){
+                return getNodeVal(x,y,newScope,tree.getUpperLeft());
+            }else if((x>newScope)&&(y<=newScope)){
+                return getNodeVal(x-newScope,y,newScope,tree.getUpperRight());
+            }else if((x<=newScope)&&(y>newScope)){
+                return getNodeVal(x,y-newScope,newScope,tree.getLowerLeft());
+            }else{
+                return getNodeVal(x-newScope, y-newScope, newScope, tree.getLowerRight());
+            }
+            
         }
     }
 
