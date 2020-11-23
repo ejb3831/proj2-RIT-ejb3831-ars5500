@@ -25,7 +25,8 @@ public class RITUncompress {
         }
         int size = textNums.remove(0);
         RITQTNode quadTree = qtform(textNums);
-        System.out.println(getNodeVal(34, 2, size, quadTree));
+        
+        LinkedList<Integer> imAsArr = convertToArr(quadTree, (int) Math.sqrt(size)); 
         System.out.println("Finished Reading");
         
 
@@ -57,6 +58,15 @@ public class RITUncompress {
             }
             
         }
+    }
+    public static LinkedList<Integer> convertToArr(RITQTNode tree, int size){
+        LinkedList<Integer> imageList = new LinkedList<Integer>();
+        for(int i=1;i<=size;i++){
+            for(int j=1;j<=size;j++){
+                imageList.add(getNodeVal(j,i,size,tree));
+            }
+        }
+        return imageList;
     }
 
     
