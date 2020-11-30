@@ -4,8 +4,17 @@ import java.util.LinkedList;
 import java.util.List;
 
 import model.RITQT; 
-
+/**
+ * this is the compressions file, not nearly as long as it was before due to my
+ * helper classes
+ * takes an uncompressed file and compresses it
+ * @author Evelyn Barnes
+ */
 public class RITCompress {
+    /**
+     * main method for RITCompress
+     * @param args uncompressed-file.txt compressed-file.rit
+     */
     public static void main(String[] args) {
         
         if (args.length != 2) {
