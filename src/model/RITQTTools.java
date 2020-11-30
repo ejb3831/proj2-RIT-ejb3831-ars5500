@@ -96,9 +96,9 @@ public class RITQTTools {
 
     public static LinkedList<Integer> unCompressedAsList(LinkedList<LinkedList<Integer>> inArr){
         LinkedList<Integer> unCompressedAsList = new LinkedList<Integer>();
-        for(LinkedList<Integer> list : inArr){
-            for(int value : list){
-                unCompressedAsList.add(value);
+        for(int i=0; i<inArr.size()-1;i++){
+            for(int j=0; j<inArr.size()-1;j++){
+                unCompressedAsList.add(inArr.get(j).get(i));
             }
         }   
         return unCompressedAsList;

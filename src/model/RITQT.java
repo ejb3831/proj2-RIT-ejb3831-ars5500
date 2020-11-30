@@ -30,9 +30,9 @@ public class RITQT {
         return this.treeUncompressed;
     }
     public LinkedList<Integer> getCompAsList(){
-        if(this.compAsList == null){
-            this.compAsList = RITQTTools.compressedAsList(this.getTree(), this.size);
-        }
+        
+        this.compAsList = RITQTTools.compressedAsList(this.getTree(), this.size);
+        
         return this.compAsList;
     }
     public LinkedList<Integer> getUnCompAsList(){
