@@ -49,32 +49,14 @@ public class fileTools {
      * @param name the name of the file to write too, should be a .rit file
      * @return the converted array
      */
-    public static void saveUnCompressed(LinkedList<LinkedList<Integer>> unCompressed, String name){
+    
+    public static void save(LinkedList<Integer> saveList, String name){
         File unComped = newDocWrite(name);    
         try {
             //open the file in writing mode
             FileWriter writeFile = new FileWriter(unComped);
             //iterate as if iterating over the uncompressed list
-            for(LinkedList<Integer> list : unCompressed){
-                for(int value : list){
-                    writeFile.write("" + value + "\n");
-                }
-            }   
-            //close the file
-            writeFile.close(); 
-        } catch (IOException e) {
-            System.out.println("Error generating output file: ");
-            e.printStackTrace();
-            return;
-        }
-    }
-    public static void saveCompressed(LinkedList<Integer> compressedAsList, String name){
-        File unComped = newDocWrite(name);    
-        try {
-            //open the file in writing mode
-            FileWriter writeFile = new FileWriter(unComped);
-            //iterate as if iterating over the uncompressed list
-            for(int value : compressedAsList){
+            for(int value : saveList){
                 writeFile.write("" + value + "\n");
             }
             //close the file

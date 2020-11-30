@@ -7,10 +7,10 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
+import model.RITQT;
 import java.util.List;
 
-import gui.RITQuadTree;
+
 /**
  * RITViewer is an image rendering tool. the Rich Image Text Viewer or RITViewer 
  * loads uncompressed txt files into Grayscale images.
@@ -46,15 +46,16 @@ public class RITViewer extends Application {
     public void start(Stage stage) throws Exception {
         //get command line arguments
         List<String> args = getParameters().getRaw();
-        //generate a new RITQuadTree(ironicly, does not include any quad trees)
-        RITQuadTree qIn = new RITQuadTree(args.get(0));
+        RITQT qt = new RITQT(args.get(0));
+        qt.fillOther();
+        
         //create the canvas to show pixels
-        Canvas pixels = new Canvas(qIn.sideLength-1,qIn.sideLength-1);
+        Canvas pixels = new Canvas(qt.getSize(),qt.getSize());
         GraphicsContext gc = pixels.getGraphicsContext2D();
         //iterate through the 2D array of pixel values and draw them
-        for(int i = 0; i<qIn.sideLength-1;i++){
-            for(int j = 0; j < qIn.sideLength-1;j++){
-                int tVal = qIn.getImage().get(i).get(j);
+        for(int i = 0; i<qt.getSize()-1;i++){
+            for(int j = 0; j < qt.getSize()-1;j++){
+                int tVal = qt.getTreeUncompressed().get(i).get(j);
                 try{
                     Color tColor = Color.rgb(tVal, tVal, tVal);
                     gc.setFill(tColor);
